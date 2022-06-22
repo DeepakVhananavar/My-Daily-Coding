@@ -1,42 +1,97 @@
-/* Programe Statement -- Write a recursive program which accept number from user and return
-summation of its digits.
-Input : 879
-Output : 24   */
+/*Programme Statement--Write a program which displays all elements which are prime from singly
+linear linked list.
+Function Prototype :int DisplayPrime( PNODE Head);
+Input linked list : |11|->|20|->|17|->|41|->|22|->|89|
+Output : 11 17 41 89   */
+
 
 
 #include<stdio.h>
+#include<stdlib.h>
 
-int Sum(int iNo)
+struct Node
 {
-	static int iSum=0;
-	static int iDigit=0;
- if(iNo>0)
- {
- 	iDigit=iNo%10;
- 	if(iDigit!=0)
- 	{
+struct Node *next;
+int data;
+};
 
- 	iSum=iSum+iDigit;
- 	}
- 	iNo=iNo/10;
- 	Sum(iNo);
+typedef struct Node NODE;
+typedef struct Node* PNODE;
+typedef struct Node** PPNODE;
+
+
+void InsertFirst(PPNODE Head,int iNo)
+{
+PNODE newn=NULL;
+newn=(PNODE)malloc(sizeof(NODE));
+newn->data=iNo;
+newn->next=NULL;
+
+if(*Head==NULL)
+{
+*Head=newn;
 }
-return iSum;
+else
+{
+newn->next=*Head;
+*Head=newn;
+}
 }
 
+void Display(PNODE Head)
+{
+if(Head==NULL)
+{
+return;
+}
+else
+{
+while(Head!=NULL)
+{
+printf(" |%d|=>",Head->data);
+Head=Head->next;
+}
+}
+printf("NULL\n");
+}
+
+void DisplayPrime(PNODE Head)
+{
+	if(Head==NULL)
+	{
+	return;
+	}
+	
+	while(Head!=NULL)
+	{
+	if((Head->data)%2==1)
+	{
+	printf("%d\t",Head->data);
+	//Head=Head->next;
+	}
+	Head=Head->next;
+	}
+}
 
 
 int main()
 {
- int iValue = 0, iRet = 0;
- 
- printf("Enter number:");
- scanf("%d",&iValue);
- 
- iRet = Sum(iValue);
- printf("%d",iRet);
+int iNo=0;
+PNODE First=NULL;
+printf("\nEnter the Number:=\n");
+scanf("%d",&iNo);
+InsertFirst(&First,iNo);
 
- return 0; 
+printf("\nEnter the Number:=\n");
+scanf("%d",&iNo);
+InsertFirst(&First,iNo);
+
+printf("\nEnter the Number:=\n");
+scanf("%d",&iNo);
+InsertFirst(&First,iNo);
+
+Display(First);
+DisplayPrime(First);
+return 0;
+
 }
-
-
