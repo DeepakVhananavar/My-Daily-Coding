@@ -1,51 +1,37 @@
-/* Programe Statement --  Write a program which accept file name which contains information of
-student and display only marks of students */
+/* Programee Statement ---Write a recursive program which accept number from user and return its
+factorial.
+Input : 5
+Output : 120    */
 
 
 #include<stdio.h>
-#include<stdlib.h>
-#include<unistd.h>
-#include<io.h>
-#include<fcntl.h>
 
 
-struct Student
+int Factorial(int iNo)
 {
-int Rollno;
-char name[20];
-int marks;
-};
- 
-void FileRead(char *Name)
+	static int i=1;
+	static int  Fact=1;
+if(iNo==0)
 {
-
-int fd=0,ret=0,i=0;
-
-struct Student sobj;
-fd=open(Name,O_RDONLY);
-if(fd==-1)
-{
-printf("Unable to Open the file \n");
-return;
+	return 0;
 }
-printf("Data from the File is:\n");
-while(ret=read(fd,&sobj,sizeof(sobj))!=0)
+if(i<=iNo)
 {
-printf("Mark  of Student is :=%d\n",sobj.marks);
+	Fact=Fact*i;
+	i++;
+	Factorial(iNo);
 }
+return Fact;
 
-close(fd);
 }
 
 int main()
 {
-char name[50]={'\0'};
-
-printf("Enter the File name:\n");
-scanf("%s",name);
-
-
-FileRead(name);
-
+int iValue=0;
+int iRet=0;
+printf("\nEnter the Number:=");
+scanf("%d",&iValue);
+iRet=Factorial(iValue);
+printf("\nFactorial is:=%d",iRet);
 return 0;
 }

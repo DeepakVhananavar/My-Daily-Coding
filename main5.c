@@ -1,52 +1,40 @@
-/* Programe Statement ---Write a program which accept file name which contains information of
-student and display addition of marks of all sudents.   */
+/* Programe Statement ---Write a recursive program which accept number from user and return its
+product of digits.
+Input : 523
+Output : 30    */
 
 
 #include<stdio.h>
-#include<stdlib.h>
-#include<unistd.h>
-#include<io.h>
-#include<fcntl.h>
 
 
-struct Student
+int Mult(int iNo)
 {
-int Rollno;
-char name[20];
-int marks;
-};
- 
-int  AddMarks(char *Name)
+static int iDigit=0;
+static int iMult=1;
+if(iNo==0)
 {
-
-int fd=0,ret=0,i=0;
-int Sum=0;
-struct Student sobj;
-fd=open(Name,O_RDONLY);
-if(fd==-1)
-{
-printf("Unable to Open the file \n");
-return -1;
+return 0;
 }
-printf("Data from the File is:\n");
-while(ret=read(fd,&sobj,sizeof(sobj))!=0)
-{
-printf("Mark  of Student is :=%d\n",sobj.marks);
-Sum=Sum+(sobj.marks);
-}
-return Sum;
-close(fd);
-}
+ if(iNo>0)
+ {
+ 	iDigit=iNo%10;
+ 	if(iDigit!=0)
+ 	{
 
+ 	iMult=iMult*iDigit;
+ 	}
+ 	iNo=iNo/10;
+ 	Mult(iNo);
+}
+return iMult;
+}
 int main()
 {
-char name[50]={'\0'};
+int iValue=0;
 int iRet=0;
-printf("Enter the File name:\n");
-scanf("%s",name);
-
-
-iRet=AddMarks(name);
-printf("Addition of Marks is:=%d",iRet);
+printf("\nEnter the Number:=");
+scanf("%d",&iValue);
+iRet=Mult(iValue);
+printf("\nMultiplication of Digits is:=%d",iRet);
 return 0;
 }

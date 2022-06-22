@@ -1,51 +1,33 @@
-/* Programe Statement --  Write a program which accept file name which contains information of
-student and Display only names of students */
-
+/* Programe Status -----   Write a recursive program which accept string from user and count number
+of characters.
+Input : Hello
+Output : 5    */
 
 #include<stdio.h>
-#include<stdlib.h>
-#include<unistd.h>
-#include<io.h>
-#include<fcntl.h>
 
-
-struct Student
+int Strlen(char *str)
 {
-int Rollno;
-char name[20];
-int marks;
-};
- 
-void FileRead(char *Name)
-{
+	static int iCnt=0,i;
 
-int fd=0,ret=0,i=0;
-
-struct Student sobj;
-fd=open(Name,O_RDONLY);
-if(fd==-1)
+if(*str!='\0')
 {
-printf("Unable to Open the file \n");
-return;
+	iCnt++;
+	str++;
+	Strlen(str);
 }
-printf("Data from the File is:\n");
-while(ret=read(fd,&sobj,sizeof(sobj))!=0)
-{
-printf("Student's Name is:=%s\t",sobj.name);
+return iCnt;
+
 }
 
-close(fd);
-}
+
 
 int main()
 {
-char name[50]={'\0'};
-
-printf("Enter the File name:\n");
-scanf("%s",name);
-
-
-FileRead(name);
-
+char arr[50]={'\0'};
+int iRet=0;
+printf("\nEnter the String\n");
+scanf("%[^'\n']s",arr);
+iRet=Strlen(arr);
+printf("\nLength of String:=%d",iRet);
 return 0;
 }
