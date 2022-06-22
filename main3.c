@@ -1,100 +1,83 @@
-/*Programme Statement ---Write a program which returns addition of all even element from singly
-linear linked list.
-Function Prototype :int AdditionEven( PNODE Head);
-Input linked list : |11|->|20|->|32|->|41|
-Output : 52    */
-
-
+/* Program Statement --Write a program which returns addition of all element from singly linear
+linked list.
+Function Prototype :int Addition( PNODE Head);
+Input linked list : |10|->|20|->|30|->|40|
+Output : 100   */
 
 
 #include<stdio.h>
 #include<stdlib.h>
 
-struct Node
+struct node
 {
-struct Node *next;
 int data;
+struct node* next;
 };
 
-typedef struct Node NODE;
-typedef struct Node* PNODE;
-typedef struct Node** PPNODE;
+typedef struct node NODE;
+typedef struct node* PNODE;
+typedef struct node** PPNODE;
 
-
-void InsertFirst(PPNODE Head,int iNo)
+void Insert(PPNODE Head,int iNo)   // To only insert elemnts in List in any way.
 {
 PNODE newn=NULL;
+PNODE temp;
 newn=(PNODE)malloc(sizeof(NODE));
-newn->data=iNo;
-newn->next=NULL;
+	newn->data=iNo;     // initialize data
+	newn->next=NULL;    //initialize Pointer
+	
+	if(*Head==NULL)              // jr PT sir cha dokyaat 1pn nav or No lakshat nasel
+	{
+		*Head=newn;
+	}
+	
+	else                  // (Linked List) Line  madhi 1 ani 1 Peksha jast mulaa ahet tr
+ 	{                                //Same as Enter at Last in Linked List cha Function
+	 temp=*Head;
+	while(temp->next!=NULL)
+	{
+		temp=temp->next;
+	}
+		temp->next=newn;
+	}
+}
 
-if(*Head==NULL)
+int Addition(PNODE Head)
 {
-*Head=newn;
+	int temp=0;
+	while(Head!=NULL)
+	{
+		temp=temp+Head->data;
+		Head=Head->next;
+	}
+	return temp;
 }
-else
-{
-newn->next=*Head;
-*Head=newn;
-}
-}
+
 
 void Display(PNODE Head)
 {
-if(Head==NULL)
-{
-return;
-}
-else
-{
-while(Head!=NULL)
-{
-printf(" |%d|=>",Head->data);
-Head=Head->next;
-}
-}
-printf("NULL\n");
-}
-
-int AdditionEven(PNODE Head)
-{
-int sum=0;
-if(Head==NULL)
-{
-return 0;
-}
-while(Head!=NULL)
-{
-if((Head->data)%2==0)
-{
-sum=sum+Head->data;
-}
-Head=Head->next;
-}
-return sum;
+	while(Head!=NULL)
+	{
+		printf("%d\t",Head->data);
+		Head=Head->next;
+	}
 }
 
 
 int main()
 {
-int iNo=0,iRet=0;
-PNODE First=NULL;
-printf("\nEnter the Number:=\n");
-scanf("%d",&iNo);
-InsertFirst(&First,iNo);
-
-printf("\nEnter the Number:=\n");
-scanf("%d",&iNo);
-InsertFirst(&First,iNo);
-
-printf("\nEnter the Number:=\n");
-scanf("%d",&iNo);
-InsertFirst(&First,iNo);
-
-Display(First);
-iRet=AdditionEven(First);
-printf("Addition of Even elemnts is:%d",iRet);
-
-return 0;
-
-}
+	int iValue=0;
+	int iRet=0;
+	PNODE First=NULL;   //Sir ni pahilya mulacha no lakshat thevlela node cha address
+	Insert(&First,70);
+	Insert(&First,30);
+	Insert(&First,50);
+	Insert(&First,40);
+	Insert(&First,30);
+	Insert(&First,20);
+	Insert(&First,10);
+	Display(First);
+	iRet=Addition(First);
+	printf("\nAddition is%d\n",iRet);
+	return 0;
+	}
