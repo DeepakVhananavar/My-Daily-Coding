@@ -1,64 +1,54 @@
-/* Programe Statement --Write Java program which accept String from user and display
-below pattern.
-Input : Hello
-Output : 
-H e l l o
-H e l l
-H e l
-H e
-H
-H e
-H e l
-H e l l
-H e l l 0   */
+/* Programe Statement --Write a program which accept matrix and display addition of elements From each
+column  */
 
 import java.lang.*;
 import java.util.*;
-class DemoString
+
+class Matrix
 {
-	void WordFrequency(String str)
+	void AdditionCol(int arr[][])
 	{
-		char arr[] = str.toCharArray();
-	int size = arr.length;
-		int i = 0;
+		int sum=0;
+		for(int i=0;i<arr.length;i++)
+		{
+		sum=0;
 
-
-				for (i=size-1;i>=0;i-- )
-		 {
-		 	for (int j=0;j<=i;j++ )
-		 	{
-		 		System.out.print(arr[j]+"\t");
-		 	}
-			System.out.println();
-		}
-
-		for (i=0;i<arr.length;i++ )
-		 {
-		 	for (int j=0;j<=i;j++ )
-		 	{
-		 		System.out.print(arr[j]+"\t");
-		 	}
-			System.out.println();
-		}
-
-
-
-
+		for(int j=0;j<arr.length;j++)
+		{
+			sum=sum+arr[j][i];	
 		
-	}
+		}
+
+	System.out.println("Sum of "+(i+1)+" col:="+sum);
+		}
+	}	
 }
 
 class Demo4
 {
-	public static void main(String arg[])
+	public static void main(String args[])
 	{
-		Scanner sobj = new Scanner(System.in);
-		System.out.println("Enter string");
+	Scanner sobj=new Scanner(System.in);
+	System.out.println("Enter the no of Rows");
+	int row=sobj.nextInt();
 
-		String str = sobj.nextLine();
-		DemoString dobj = new DemoString();
+	System.out.println("Enter the no of cols");
+	int col=sobj.nextInt();
 
-			dobj.WordFrequency(str);
-		
+	int arr[][]=new int [row][col];
+	System.out.println("Enter the Elements into Matrix");
+
+	for(int i=0;i<arr.length;i++)
+	{
+	System.out.println("Row with index\t"+i);
+	for(int j=0;j<arr[i].length;j++)
+	{
+	System.out.println("Enter the Element "+i+","+j);
+	arr[i][j]=sobj.nextInt();
 	}
-}
+	}
+	Matrix mobj=new Matrix();
+	mobj.AdditionCol(arr);
+	
+	}
+} 

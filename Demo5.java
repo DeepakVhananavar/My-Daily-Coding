@@ -1,54 +1,88 @@
-/* Programe Statement --Write Java program which accept number of rows and number of
-columns from user and display below pattern.
-Input : iRow = 3 iCol = 4
-Output : 
-1 1 1 1
-2 2 2 2
-3 3 3 3
-4 4 4 4 */
+/* Programe Statement --Write a program which accept matrix and swap the contents of consecutive rows.   */
+
+
 
 
 import java.lang.*;
 import java.util.*;
 
-class DemoPattern
+class Matrix
 {
-	void DisplayPattern(int row,int col)
-	{	
-		int No=1;
-		if((row==0)|| (col==0))
-		{
-		return;
-		}
-		if((row<0)||(col<0))
-		{
-		row=-row;
-		col=-col;
-		}
+	void SwapRow(int arr[][],int x,int y)
+	{
+		int iSum= 0,temp=0;
 
-		for(int i=1;i<=row;i++)
+		for(int i = 0; i< arr.length; i++)
 		{
-		for(int j=1;j<=col;j++)
-		{
-			System.out.print( (No)+"\t");
+		
+     				temp = arr[(x-1)][i];
+                    arr[x-1][i] = arr[y-1][i];
+                    arr[y-1][i] = temp;
+                
 		}
-		No++;
-		System.out.println("\n");
-		}
+                System.out.println("Matrix after interchanging rows:"+x +" and "+y);
 
+        for (int i = 0; i < arr.length; i++) 
+        {
+            for (int j = 0; j < arr.length; j++) 
+             {
+                System.out.print(arr[i][j] + " ");
+             }
+                System.out.println("");
+         }
 	}
 }
 
 class Demo5
 {
-	public static void main(String args[])
+	public static void main(String arg[])
 	{
-	Scanner sobj=new Scanner(System.in);
-	DemoPattern dobj=new DemoPattern();
-	System.out.println("Enter the no of Rows");
-	int Row = sobj.nextInt();
-	System.out.println("Enter the no of Cols");
-	int Col = sobj.nextInt();
-	dobj.DisplayPattern(Row,Col);
+		Scanner sobj = new Scanner(System.in);
+		System.out.println("Enter number of rows");
+		int row = sobj.nextInt();
+
+		System.out.println("Enter number of columns");
+		int col = sobj.nextInt();
+
+		int arr[][] = new int[row][col];
+
+		System.out.println("Enter the elements");
+
+		for(int i = 0;i<arr.length;i++)
+		{
+			System.out.println("Row with index :"+i);
+			for(int j = 0;j<arr[i].length;j++)
+			{
+				System.out.println("Enter the element :"+i+","+j);
+				arr[i][j] = sobj.nextInt();
+			}
+		}
+		System.out.println("Enter the two row no's to swap:");
+		 int x = sobj.nextInt();
+         int y = sobj.nextInt();
+		Matrix mobj = new Matrix();
+		mobj.SwapRow(arr,x,y);
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

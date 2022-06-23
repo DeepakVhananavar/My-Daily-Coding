@@ -1,46 +1,59 @@
-/* Programe Statement --Write Java program which accept String from user and display
-below pattern.
-Input : Hello
-Output : 
-H
-H e
-H e l
-H e l l
-H e l l o   */
-
+/* Programe Statement --Write a program which accept matrix and return largest number from both the
+diagonals  */
 
 import java.lang.*;
 import java.util.*;
 
-class DemoPattern
+class Matrix
 {
-	void DisplayPattern(String str)
+	int LargestElement(int arr[][])
 	{
-		char arr[]=str.toCharArray();
-		
+		int max=0;
 		for(int i=0;i<arr.length;i++)
 		{
-		for(int j=0;j<=i;j++)
+			 max=arr[i][j];
+
+		for(int j=0;j<arr.length;j++)
 		{
-	
-		System.out.print(arr[j]+"\t");
-		
+			if((i==j) || ( (i + j) = arr.length-1))
+			{
+			if( max < arr[i][j])
+			{
+			max=arr[i][j];
+			}
+			}
 		}
-		System.out.println("\n");
 		}
+return max;
+
 	}
 }
-
-
 
 class Demo3
 {
 	public static void main(String args[])
 	{
 	Scanner sobj=new Scanner(System.in);
-	DemoPattern dobj=new DemoPattern();
-	System.out.println("Enter the String");
-	String str=sobj.nextLine();
-	dobj.DisplayPattern(str);
+	System.out.println("Enter the no of Rows");
+	int row=sobj.nextInt();
+
+	System.out.println("Enter the no of cols");
+	int col=sobj.nextInt();
+
+	int arr[][]=new int [row][col];
+	System.out.println("Enter the Elements into Matrix");
+
+	for(int i=0;i<arr.length;i++)
+	{
+	System.out.println("Row with index"+i);
+	for(int j=0;j<arr[i].length;j++)
+	{
+	System.out.println("Enter the Element "+i+","+j);
+	arr[i][j]=sobj.nextInt();
+	}
+	}
+	Matrix mobj=new Matrix();
+	int Ret=mobj.LargestElement(arr);
+	System.out.println("Largest Element from Both the Diagonal is"+Ret);
 	}
 }

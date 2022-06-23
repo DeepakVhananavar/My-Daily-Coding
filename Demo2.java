@@ -1,47 +1,59 @@
-/* Programe Statement --Write Java program which accept String from user and display
-below pattern.
-Input : Hello
-Output : 
-H e l l o
-H e l l
-H e l
-H e
-H     */
-
+/* Programe Statement --Write a program which accept matrix and one number from user and return
+frequency of that number.  */
 
 
 import java.lang.*;
 import java.util.*;
 
-class DemoPattern
+class Matrix
 {
-	void DisplayPattern(String str)
+	int FindNumber(int arr[][],int iNo)
 	{
-		char arr[]=str.toCharArray();
-		
-		for(int i=arr.length-1;i>=0;i--)
+		int iCnt=0;
+		for(int i=0;i<arr.length;i++)
 		{
-		for(int j=0;j<=i;j++)
+		for(int j=0;j<arr.length;j++)
 		{
-	
-		System.out.print(arr[j]+"\t");
-		
+		if(arr[i][j]==iNo)
+		{
+		iCnt++;
 		}
-		System.out.println("\n");
 		}
+
+		}
+return iCnt;
+
+
 	}
 }
-
-
-
 class Demo2
 {
 	public static void main(String args[])
 	{
-	Scanner sobj=new Scanner(System.in);
-	DemoPattern dobj=new DemoPattern();
-	System.out.println("Enter the String");
-	String str=sobj.nextLine();
-	dobj.DisplayPattern(str);
+		Scanner sobj=new Scanner(System.in);
+		System.out.println("Enter the No of Rows:=");
+		int row=sobj.nextInt();
+
+		System.out.println("Enter the No of Columns:=");
+		int col=sobj.nextInt();
+
+		int arr[][]=new int[row][col];
+
+		System.out.println("Enter the Elemnts:\n");
+		for(int i=0;i<arr.length;i++)
+		{	
+			System.out.println("Row with Index :"+i);
+			for(int j=0;j<arr[i].length;j++)
+		{
+			System.out.println("Enter the Element:"+i+","+j);
+			arr[i][j]=sobj.nextInt();
+
+		}
+		}
+		System.out.println("Enter the Number to Search");
+		int value=sobj.nextInt();
+		Matrix mobj=new Matrix();
+		int iRet=mobj.FindNumber(arr,value);
+		System.out.println("No found "+iRet + "\t times in the matirx");
 	}
 }
