@@ -1,83 +1,47 @@
-/* Program Statement --Write a program which returns addition of all element from singly linear
-linked list.
-Function Prototype :int Addition( PNODE Head);
-Input linked list : |10|->|20|->|30|->|40|
-Output : 100   */
-
+/* Write a program which checks whether 7th 15th 21st & 28th bit is On or OFF.*/
 
 #include<stdio.h>
-#include<stdlib.h>
 
-struct node
+typedef int BOOL;
+typedef unsigned int UNIT;
+#define TRUE 1
+#define FALSE 0
+
+BOOL CheckOn(UNIT iNo)
 {
-int data;
-struct node* next;
-};
+	int iResult=0;
+int iMask=0X08104040;
 
-typedef struct node NODE;
-typedef struct node* PNODE;
-typedef struct node** PPNODE;
+iResult=iNo & iMask;
 
-void Insert(PPNODE Head,int iNo)   // To only insert elemnts in List in any way.
+if(iResult== iMask)
 {
-PNODE newn=NULL;
-PNODE temp;
-newn=(PNODE)malloc(sizeof(NODE));
-	newn->data=iNo;     // initialize data
-	newn->next=NULL;    //initialize Pointer
-	
-	if(*Head==NULL)              // jr PT sir cha dokyaat 1pn nav or No lakshat nasel
-	{
-		*Head=newn;
-	}
-	
-	else                  // (Linked List) Line  madhi 1 ani 1 Peksha jast mulaa ahet tr
- 	{                                //Same as Enter at Last in Linked List cha Function
-	 temp=*Head;
-	while(temp->next!=NULL)
-	{
-		temp=temp->next;
-	}
-		temp->next=newn;
-	}
+return TRUE;
+}
+else
+{
+return FALSE;
+}
 }
 
-int Addition(PNODE Head)
-{
-	int temp=0;
-	while(Head!=NULL)
-	{
-		temp=temp+Head->data;
-		Head=Head->next;
-	}
-	return temp;
-}
-
-
-void Display(PNODE Head)
-{
-	while(Head!=NULL)
-	{
-		printf("%d\t",Head->data);
-		Head=Head->next;
-	}
-}
 
 
 int main()
 {
-	int iValue=0;
-	int iRet=0;
-	PNODE First=NULL;   //Sir ni pahilya mulacha no lakshat thevlela node cha address
-	Insert(&First,70);
-	Insert(&First,30);
-	Insert(&First,50);
-	Insert(&First,40);
-	Insert(&First,30);
-	Insert(&First,20);
-	Insert(&First,10);
-	Display(First);
-	iRet=Addition(First);
-	printf("\nAddition is%d\n",iRet);
-	return 0;
-	}
+
+UNIT iValue=0;
+
+BOOL bRet=0;
+printf("Enter the Number ");
+scanf("%u",&iValue);
+bRet=CheckOn(iValue);
+if(bRet==TRUE)
+{
+printf("The 7th 15th 21st  and 28th Bit is On");
+}
+else
+{
+printf("Maye be one Bit is off or All Bits is Off");
+}
+return 0;
+}

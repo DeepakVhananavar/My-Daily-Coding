@@ -1,90 +1,108 @@
-/* Program Statement ---Write a program which search first occurrence of particular element from
-singly linear linked list.
-Function should return position at which element is found.
-Function Prototype :int SearchFirstOcc( PNODE Head , int no );
-Input linked list : |10|->|20|->|30|->|40|->|50|->|30|->|70|
-Input element : 30
-Output : 3   */
+/*Program Statement-.Write a program which checks whether 15th bit is On or OFF.
+
+
+/*
+    Binary to Hexadecimal conversion
+ 
+    Integer size = 4 bytes      ie 32 bits
+ 
+    Hexadecimal cha base : 16
+    Hexadecimal chi range is 0  to 15
+
+Decomal             Binary              Hexadecimal
+ 0                      0000                        0
+1                       0001                        1
+2                       0010                        2
+ 3                      0011                        3
+ 4                      0100                        4
+ 5                      0101                        5
+ 6                      0110                        6
+ 7                      0111                        7
+ 8                      1000                        8
+ 9                      1001                        9
+ 10                    1010                        a
+ 11                    1011                        b
+ 12                    1100                        c
+ 13                    1101                        d
+ 14                    1110                        e
+ 15                    1111                        f
+ 
+    For the 16 we requre 4 bits from binary.                (1111)
+ 
+ 
+ Number re[resentation in Hexadecimal
+ 
+ Number : 86
+    
+ 
+ 
+        0000    0000    0000    0000    0000    0000     0101   0110
+        0           0           0           0       0           0           5       6
+ 
+Hexadecimal : 0X00000056
+ 
+ */
+
+/*
+    Mask designing :
+ 
+ As we want to check the status of fourth bit we just create the mask whose fourth bit is on.
+ 
+ Mask :  0000       0000            0000            0000        0000            0000       0000        1000
+                0           0                   0                   0           0                   0           0              8
+ 
+ Hexadecimal mask : 0X00000008
+ 
+ 0X01000000
+ */
+
 
 #include<stdio.h>
-#include<stdlib.h>
 
-struct node
+typedef int BOOL;
+#define TRUE 1
+#define FALSE 0
+
+BOOL CheckOn(int iValue)
 {
-int data;
-struct node *next;
-};
-
-typedef struct node NODE;
-typedef struct node* PNODE;
-typedef struct node** PPNODE;
-
-void InsertFirst(PPNODE Head,int iNo)
+int iResult=0;
+int iMask=0X00004000;   
+if(iValue<0)
 {
-	PNODE newn=NULL;                  // navin mulacha hatt khalli thevla
-	newn=(PNODE)malloc(sizeof(NODE));
-	newn->data=iNo;     // initialize data
-	newn->next=NULL;    //initialize Pointer
-	
-	if(*Head==NULL)              // jr PT sir cha dokyaat 1pn nav or No lakshat nasel
-	{
-		*Head=newn;
-	}
-	
-	else                  // (Linked List) Line  madhi 1 ani 1 Peksha jast mulaa ahet tr
-	{
-	newn->next=*Head;
-	*Head=newn;
-	}
+iValue=-iValue;
+}
+iResult=iValue & iMask;
+if(iResult==iMask)
+{
+return TRUE;
+}
+else
+{
+return FALSE;
+}
 }
 
-void Display(PNODE Head)
-{
-	while(Head!=NULL)
-	{
-		printf("%d\t",Head->data);
-		Head=Head->next;
-	}
-}
 
-int SearchFirstOcc(PNODE Head,int iNo)
-{
-	int pos=1;
-	
-	if(Head==NULL)
-	{
-	return 0;
-	}
-	while(Head!=NULL)
-	{
-		if(Head->data==iNo)
-		{
-			return pos;
-			return 0;
-		}
-		Head=Head->next;
-		pos++;
-	}
-	//return pos;
-}
 
 int main()
 {
-	int iValue=0;
-	int iRet=0;
-	PNODE First=NULL;   //Sir ni pahilya mulacha no lakshat thevlela node cha address
-	InsertFirst(&First,70);
-	InsertFirst(&First,30);
-	InsertFirst(&First,50);
-	InsertFirst(&First,40);
-	InsertFirst(&First,30);
-	InsertFirst(&First,20);
-	InsertFirst(&First,10);
-	Display(First);
-	printf("\nEnter no to Find 1st occurence\n");
-	scanf("%d",&iValue);
-	iRet=SearchFirstOcc(First,iValue);
-	printf("No found at pos %d\n",iRet);
-    
-	return 0;
+int iNo=0;
+BOOL bRet=FALSE;
+
+printf("Enter the Number=:");
+scanf("%d",&iNo);
+
+bRet=CheckOn(iNo);
+if(bRet==TRUE)
+{
+printf("15th Bit is On");
 }
+else
+{
+printf("15th Bit is OFF");
+}
+return 0;
+}
+
+
+

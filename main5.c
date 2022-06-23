@@ -1,92 +1,46 @@
-/* Program Statement---Write a program which return smallest element from singly linear linked
-list.
-Function Prototype :int Minimum( PNODE Head);
-Input linked list : |110|->|230|->|20|->|240|->|640|
-Output : 20  */
-
-
+/* Write a program which checks whether 1st and last  bit is On or OFF i.e 1st bit 
+and 32th bit.*/
 
 #include<stdio.h>
-#include<stdlib.h>
 
-struct node
+typedef int BOOL;
+typedef unsigned int UNIT;
+
+#define TRUE 1
+#define FALSE 0
+
+
+BOOL CheckOn(UNIT iNo)
 {
-int data;
-struct node *next;
-};
-
-typedef struct node NODE;
-typedef struct node* PNODE;
-typedef struct node** PPNODE;
-
-
-void Insert(PPNODE Head,int iNo)
+int iResult=0;
+int iMask=0X80000001;
+iResult=iNo & iMask;
+if(iResult==iMask)
 {
-PNODE newn=NULL;
-PNODE temp;
-newn =(PNODE)malloc(sizeof(NODE));
-newn->data=iNo;
-newn->next=NULL;
-
-if(*Head==NULL)
-{
-*Head=newn;
+return TRUE;
 }
 else
 {
-temp=*Head;
-while(temp->next!=NULL)
-	{
-		temp=temp->next;
-	}
-		temp->next=newn;
-	}
+return FALSE;
 }
 
-void Display(PNODE Head)
-{
-while(Head!=NULL)
-{
-printf("%d\t",Head->data);
-Head=Head->next;
 }
-}
-
-
-int SmallestNo(PNODE Head)
-{
-int temp=0;
-temp=Head->data;
-
-while(Head!=NULL)
-{
-
-if((Head->data)<temp)
-temp=Head->data;
-Head=Head->next;
-}
-return temp;
-}
-
 
 
 int main()
 {
-
-int iValue=0;
-	int iRet=0;
-	PNODE First=NULL;   //Sir ni pahilya mulacha no lakshat thevlela node cha address
-	Insert(&First,70);
-	Insert(&First,30);
-	Insert(&First,50);
-	Insert(&First,40);
-	Insert(&First,30);
-	Insert(&First,20);
-	Insert(&First,10);
-	Display(First);
-	
-	iRet=SmallestNo(First);
-	printf("\nSmallest no:=%d\n",iRet);
-	return 0;
+UNIT iValue=0;
+BOOL bRet=FALSE;
+printf("Enter the Number");
+scanf("%u",&iValue);
+bRet=CheckOn(iValue);
+if(bRet==TRUE)
+{
+printf("1st and 32th bit is On\n");
 }
-
+else
+{
+printf("one of the Bit is off or all bits are off");
+}
+return 0;
+} 
