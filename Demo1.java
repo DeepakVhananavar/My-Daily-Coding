@@ -1,28 +1,32 @@
+// Accept the Matices from user and display the Maximum Elemnt of each row */
 
 import java.lang.*;
 import java.util.*;
 
 class Matrix
 {
-	int AddDiagonal(int arr[][])
-	{
-		int Sum=0;
+
+	void MaxRow(int arr[][])
+	{	
+		int iMax=0;
 		for(int i=0;i<arr.length;i++)
+		{	
+			iMax=arr[i][0];
+			for(int j=0;j<arr[i].length;j++)
 		{
-		for(int j=0;j<arr.length;j++)
-		{
-		if(i==j)
-		{
-		Sum=Sum+arr[i][j];
-		}
-		}
+			if(arr[i][j]>iMax)
+			{
+				iMax=arr[i][j];
+			}
+			
 
 		}
-return Sum;
-
-
+		System.out.println("Largest of row is:="+i +"is:"+iMax);
+		}
 	}
 }
+
+
 class Demo1
 {
 	public static void main(String args[])
@@ -48,7 +52,6 @@ class Demo1
 		}
 		}
 		Matrix mobj=new Matrix();
-		int iRet=mobj.AddDiagonal(arr);
-		System.out.println("Summation of Diagonal elemnts is:="+iRet);
-	}
+		mobj.MaxRow(arr);
+}
 }

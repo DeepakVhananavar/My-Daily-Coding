@@ -1,65 +1,52 @@
-// Accept N numbers from user.
-//Accept one another number and return the nearest  umber to that number.
-
-// Input : N = 10
-// Element = 15
-//	5	8	12	4	-8	8	10	2	2	0
-// Output :	12	
-
-// Input : N = 10
-// Element = 2
-//	5	8	12	4	-8	8	10	2	2	0
-// Output :	2	
-
-// Input : N = 10
-// Element = 7
-//	5	8	12	4	-8	8	10	2	2	0
-// Output :	8
-
-// Input : N = 10
-// Element = 25
-//	5	8	12	4	-8	8	10	2	2	0
-// Output :	12	
+// Accept the Matices from user and display the addition of each row */
 
 import java.lang.*;
 import java.util.*;
-class DemoArray
+
+class Matrix
 {
-	int Nearest(int arr[], int iNo)
-	{
-		int near=0,i=0;
-		near=arr[i];
-		for(i=1;i<arr.length;i++)
+
+	void SumRow(int arr[][])
+	{	
+		int iSum=0;
+		for(int i=0;i<arr.length;i++)
+		{	
+			for(int j=0;j<arr[i].length;j++)
 		{
-			if((arr[i]>near) && (arr[i]<=iNo))
-			{
-				near=arr[i];
-			}
+			iSum = iSum + arr[i][j];
 
 		}
-		return near;
-
+		System.out.println("Summtion of two numbers is:="+i +"is:"+iSum);
+		}
 	}
 }
+
+
 class Demo
 {
-	public static void main(String arg[])
+	public static void main(String args[])
 	{
-		Scanner sobj = new Scanner(System.in);
-		System.out.println("Enter number of elements");
-		int size = sobj.nextInt();
-		int arr[] = new int[size];
-		System.out.println("Enter elements");
-		for(int i = 0; i < arr.length; i++)
-		{
-			arr[i] = sobj.nextInt();
-		}
-		System.out.println("Enter the number");
-		int value = sobj.nextInt();
-		DemoArray dobj = new DemoArray();
-		int ret = dobj.Nearest(arr,value);
+		Scanner sobj=new Scanner(System.in);
+		System.out.println("Enter the No of Rows:=");
+		int row=sobj.nextInt();
 
-		System.out.println("Nearest number is "+ret);
+		System.out.println("Enter the No of Columns:=");
+		int col=sobj.nextInt();
+
+		int arr[][]=new int[row][col];
+
+		System.out.println("Enter the Elemnts:\n");
+		for(int i=0;i<arr.length;i++)
+		{	
+			System.out.println("Row with Index :"+i);
+			for(int j=0;j<arr[i].length;j++)
+		{
+			System.out.println("Enter the Element:"+i+","+j);
+			arr[i][j]=sobj.nextInt();
+
+		}
+		}
+		Matrix mobj=new Matrix();
+		mobj.SumRow(arr);
 	}
 }
-
