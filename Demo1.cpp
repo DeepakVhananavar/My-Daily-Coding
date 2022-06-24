@@ -1,4 +1,4 @@
-// class for arrray  with dynamic object creation
+// class for arrray  with dynamic object creation and without accepting n number
 
  #include<iostream>
 
@@ -47,11 +47,9 @@
 
  int main()
  {
- 	int no=0;
- 	cout<<"Enter the number of elements\n";
- 	cin>>no;
+ 	
  	Array *obj1;
- 	obj1=new Array(no);      // Dynamic object creation
+ 	obj1=new Array();      // Dynamic object creation
  	obj1->Accept();
  	obj1->Dispaly();
 
