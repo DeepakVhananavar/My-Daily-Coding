@@ -1,59 +1,68 @@
-/* Programe Statement --Write a program which accept matrix and one number from user and return
-frequency of that number.  */
+// Accept number from user and check whether that number is strong number or not
+//strong number is such a no whose summation of factorial of digits is same sa its number
+// Input --145  1!+4!+5!=145  TRUE  ( dilelya no cha digit cha factorial chi addition same no yayla pahije)
+// Input --190 1!+4!+0!=190  FALSE  
+
+
+// Note -- Boolean is a Datatype in java
 
 
 import java.lang.*;
 import java.util.*;
 
-class Matrix
+class Digits
 {
-	int FindNumber(int arr[][],int iNo)
+	boolean CheckStrong(int iNo)
 	{
-		int iCnt=0;
-		for(int i=0;i<arr.length;i++)
+	int temp=0,iFact=0,Sum=0;
+	//          0,1,2,3,4,  5 , 6 ,7   , 8   , 9
+	int fact[]={1,1,2,6,24,120,720,5040,40320,362880};   //array ghetla tyat already saglya nos chi factoril store keli apn
+	if(iNo<0)
+	{
+		iNo=-iNo;
+	}
+	temp=iNo;
+	while(iNo!=0)                    //loop to get digit
+	{
+		int digit=0;
+		digit=iNo%10;              //digit
+		
+		iNo=iNo/10;           //remove that digit
+		Sum=Sum+fact[digit];        //add the factorial of particular digit
+		if(Sum >temp)     // jr sum no peksha motha asel tr break
 		{
-		for(int j=0;j<arr.length;j++)
+			break;
+		}
+		iFact=1;             //reset the variable
+	}
+	if(temp==Sum)
 		{
-		if(arr[i][j]==iNo)
+		return true;         // true or False small letter madhi lehla tri chalta
+		}
+		else
 		{
-		iCnt++;
+		return false;
 		}
-		}
-
-		}
-return iCnt;
-
-
 	}
 }
 class Demo2
 {
 	public static void main(String args[])
 	{
+		boolean bret=false;
+		
+		Digits dobj=new Digits();
 		Scanner sobj=new Scanner(System.in);
-		System.out.println("Enter the No of Rows:=");
-		int row=sobj.nextInt();
-
-		System.out.println("Enter the No of Columns:=");
-		int col=sobj.nextInt();
-
-		int arr[][]=new int[row][col];
-
-		System.out.println("Enter the Elemnts:\n");
-		for(int i=0;i<arr.length;i++)
-		{	
-			System.out.println("Row with Index :"+i);
-			for(int j=0;j<arr[i].length;j++)
+		System.out.println("Enter the Number");
+		int Value=sobj.nextInt();
+		bret=dobj.CheckStrong(Value);
+		if(bret==true)
 		{
-			System.out.println("Enter the Element:"+i+","+j);
-			arr[i][j]=sobj.nextInt();
-
+			System.out.println("Number is Strong");
 		}
+		else
+		{
+			System.out.println("Number is Not Strong");
 		}
-		System.out.println("Enter the Number to Search");
-		int value=sobj.nextInt();
-		Matrix mobj=new Matrix();
-		int iRet=mobj.FindNumber(arr,value);
-		System.out.println("No found "+iRet + "\t times in the matirx");
 	}
 }
